@@ -51,7 +51,10 @@ const updateLoginDate = (id, date) => {
 const retrieveHashPass = (userN) => {
     return db("login").select("password").where({ username: userN });
 };
-// add data from personal profile page
+
+// ----
+// add data from personal profile page 
+// ----
 const setImg = ({ filename, username }) => {
     console.log('value', filename, username);
     return db('users_info')
@@ -61,18 +64,36 @@ const setImg = ({ filename, username }) => {
         .where({ username: username })
         .returning('*')
 }
-const insertInfo = (age, job, content, username) => {
-    console.log('db', age, job, content);
-    return db('users_info')
-        .update({
-            age,
-            job,
-            about_myself: content
-        })
-        .where({ username: username })
-        .returning('*')
+const insertInfo = (age, job, about_myself, username) => {
+    console.log('db', age, job, about_myself);
+    if (age != '') {
+        return db('users_info')
+            .update({
+                age
+            })
+            .where({ username: username })
+            .returning('*')
+    }
 
+    if (job != '') {
+        return db('users_info')
+            .update({
+                job
+            })
+            .where({ username: username })
+            .returning('*')
+    }
+
+    if (about_myself != '') {
+        return db('users_info')
+            .update({
+                about_myself
+            })
+            .where({ username: username })
+            .returning('*')
+    }
 }
+// ------------
 
 const getUsers = (userN) => {
     return db('users_info')
@@ -80,14 +101,14 @@ const getUsers = (userN) => {
         .returning(['user_id'])
 
 }
-
 const getUsersCards = () => {
     return db('users_info')
         .select('*')
         .returning('*')
 }
-
+// ----
 // chat
+// ----
 const insertMessageToDB = (message, username_from, username_to) => {
     console.log('db-message', message, username_from, username_to);
     return db('messages')
@@ -118,6 +139,7 @@ const getUsersMessages = (login_username) => {
         .where({ username_from: login_username })
         .groupBy(['username_to', 'username_from'])
 }
+// -------------
 
 
 module.exports = {

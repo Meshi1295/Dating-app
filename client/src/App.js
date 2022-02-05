@@ -87,28 +87,6 @@ class App extends React.Component {
     this.successRegi();
   };
 
-  register = async (event) => {
-    event.preventDefault();
-    const { sign_username, sign_password, firstName, lastName, email, phone } = this.state;
-    console.log(sign_username, sign_password, firstName, lastName, email, phone);
-    let username = sign_username;
-    let password = sign_password;
-
-    await fetch("http://localhost:8080/register", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify({ username, password, firstName, lastName, email, phone }),
-    })
-      // .then((res) => {
-      //   res.json()
-      // })
-      .catch((err) => console.log(err));
-
-    // this.props.history.push("/login");
-
-  };
 
   login = (event) => {
     event.preventDefault();
@@ -155,7 +133,7 @@ class App extends React.Component {
                 getLastName={this.getLastName}
                 getUserPhone={this.getUserPhone}
                 getEmail={this.getEmail}
-                register={this.register}
+                userData={this.state}
               />
             }
           />

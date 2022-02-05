@@ -38,18 +38,21 @@ const PrivateProfile = (props) => {
     }
 
     const setUserInfo = () => {
-        console.log('im in');
+        console.log('im in setUserInfo');
         fetch(`http://localhost:8080/private-info-page/${username}`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ age, job, content })
         })
             .then((res) => {
-                console.log('res', res)
+                return res.json()
+            })
+            .then((data) => {
+                setUserData(data)
             })
             .catch((e) => console.log(e))
     }
-    console.log('userData', userData);
+
     // get user data
     useEffect(() => {
         fetch(`http://localhost:8080/infoUsers/${username}`)
@@ -61,7 +64,9 @@ const PrivateProfile = (props) => {
     }, [])
 
     useEffect(() => {
-        setUserInfo()
+        if (age || job || content) {
+            setUserInfo()
+        }
     }, [age, job, content])
 
 
@@ -89,7 +94,7 @@ const PrivateProfile = (props) => {
 
                     <label>
                         <span style={{ fontSize: '29px' }}>
-                            {user.firstname}</span>, {age}
+                            {user.firstname}</span>, {user.age}
                         {
                             show.showAge ? <input
                                 style={{ width: 40 }}
@@ -103,7 +108,7 @@ const PrivateProfile = (props) => {
                         </IconButton>
                     </label>
 
-                    <p className='job'> My job in : {job} {userData.job}
+                    <p className='job'> My job in : {user.job}
                         {
                             show.showJob ? <input
                                 style={{ width: 40 }}
@@ -117,7 +122,7 @@ const PrivateProfile = (props) => {
                     </p>
 
 
-                    <p className='about-myself'>Content about myself : {userData.content}
+                    <p className='about-myself'>Content about myself : {user.about_myself}
                         {
                             show.showContent ? <input
                                 style={{ width: 40 }}

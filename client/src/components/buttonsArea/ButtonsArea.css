@@ -1,6 +1,6 @@
 .buttonsContainer {
   bottom: 10vh;
-  position: fixed;
+  /* position: fixed; */
   margin-top: 30px;
   display: flex;
   justify-content: space-evenly;

@@ -1,9 +1,11 @@
 // Register
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './Register.css'
 
 const Signup = (props) => {
+    const navigate = useNavigate()
+
     const {
         submitRegi,
         getSign_username,
@@ -12,8 +14,29 @@ const Signup = (props) => {
         getLastName,
         getUserPhone,
         getEmail,
-        register,
+
     } = props
+
+    const register = async (event) => {
+        event.preventDefault();
+        const { sign_username, sign_password, firstName, lastName, email, phone } = props.userData;
+        console.log(sign_username, sign_password, firstName, lastName, email, phone);
+        let username = sign_username;
+        let password = sign_password;
+
+        await fetch("http://localhost:8080/register", {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({ username, password, firstName, lastName, email, phone }),
+        })
+            .then((res) => {
+                navigate('/login')
+            })
+            .catch((err) => console.log(err));
+
+    };
     return (
         <div className="form-container">
 

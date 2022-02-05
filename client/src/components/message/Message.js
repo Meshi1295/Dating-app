@@ -2,9 +2,11 @@ import React from 'react';
 import './Message.css';
 import ReactEmoji from 'react-emoji';
 
-const Message = ({ message: { message, username_from, username_to, message_date }, name }) => {
+const Message = (
+    { message: { message, username_from, username_to, message_date }, name }
+) => {
 
-    console.log({ message: { message, username_from, username_to }, name });
+    console.log({ message: { message, username_from, username_to, message_date }, name });
 
     let isSentByCurrentUser = false;
 

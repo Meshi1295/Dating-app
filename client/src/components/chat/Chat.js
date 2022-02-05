@@ -18,7 +18,7 @@ const Chat = (props) => {
 
     // const [name, setName] = useState('');
     // const [room, setRoom] = useState('');
-    const [users, setUsers] = useState('');
+
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const [flag, setFlag] = useState(0);
@@ -90,7 +90,6 @@ const Chat = (props) => {
         setUsername_from(username_from)
 
         const interval = setInterval(() => {
-
             fetch('http://localhost:8080/allmessage', {
                 method: 'post',
                 headers: { 'Content-Type': 'application/json' },
@@ -111,6 +110,58 @@ const Chat = (props) => {
         }, 2000);
         return () => clearInterval(interval);
     }, [])
+
+
+
+    useEffect(() => {
+        const { username_from, username_to } = location;
+
+        setUsername_to(username_to);
+        setUsername_from(username_from)
+
+
+        fetch('http://localhost:8080/allmessage', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username_from, username_to })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setMessages(data)
+                console.log('arr of message', data);
+            })
+            .catch(e => {
+                if (e) {
+                    setFlag(1);
+                    alert(e);
+                }
+            })
+    }, [])
+
+    useEffect(() => {
+        const { username_from, username_to } = location;
+
+        setUsername_to(username_to);
+        setUsername_from(username_from)
+
+
+        fetch('http://localhost:8080/allmessage', {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username_from, username_to })
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                setMessages(data)
+                console.log('arr of message', data);
+            })
+            .catch(e => {
+                if (e) {
+                    setFlag(1);
+                    alert(e);
+                }
+            })
+    }, [message])
 
     if (flag) {
         return (

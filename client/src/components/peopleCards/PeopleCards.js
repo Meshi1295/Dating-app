@@ -6,7 +6,6 @@ import ButtonsArea from '../buttonsArea/ButtonsArea';
 const PeopleCards = (props) => {
     const { username } = props
     const [people, setPeople] = useState([])
-    const [userExist, setUserExist] = useState('')
 
     useEffect(() => {
         fetch('http://localhost:8080/users')
@@ -40,20 +39,17 @@ const PeopleCards = (props) => {
                             </h3>
                         </div>
 
-                        {/* {
-                            setUserExist(person.username)
-                        } */}
-
+                        <ButtonsArea
+                            peoples={people}
+                            currentlyLogged={username}
+                            userExist={person.username}
+                        />
 
                     </PeopleCard>
                 ))
                 }
             </div >
-            <ButtonsArea
-                peoples={people}
-                currentlyLogged={username}
-                userExist={userExist}
-            />
+
         </>
     )
 }
