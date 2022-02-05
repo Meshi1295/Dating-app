@@ -1,0 +1,58 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5em;
+  position: relative;
+  justify-content: center;
+}
+
+.profile-img {
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 25px;
+  margin-bottom: 20px;
+}
+.user-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  border-bottom: 1px solid rgb(245, 244, 244);
+  width: 100vh;
+  margin: 0.5em;
+  padding: 6px;
+}
+
+.job {
+  border-bottom: 1px solid rgb(245, 244, 244);
+  width: 100vh;
+  margin: 0.5em;
+  padding: 6px;
+}
+.about-myself {
+  border-bottom: 1px solid rgb(245, 244, 244);
+  width: 100vh;
+  margin: 0.5em;
+  padding: 6px;
+}
+
+.img-btn {
+  display: flex;
+  align-items: center;
+}
+
+.img-btn button {
+  cursor: pointer;
+  background-color: #3498db;
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 2px;
+  width: 40%;
+}

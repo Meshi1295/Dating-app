@@ -1,0 +1,26 @@
+.buttonsContainer {
+  bottom: 10vh;
+  position: fixed;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.btn {
+  background-color: #fff;
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.3);
+}
+
+.btn.replayIcon {
+  /* padding: 3vw; */
+  color: orange;
+}
+
+.btn.closeIcon {
+  color: black;
+}
+
+.btn.favoriteIcon {
+  color: red;
+}
