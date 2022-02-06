@@ -20,7 +20,6 @@ const Signup = (props) => {
     const register = async (event) => {
         event.preventDefault();
         const { sign_username, sign_password, firstName, lastName, email, phone } = props.userData;
-        console.log(sign_username, sign_password, firstName, lastName, email, phone);
         let username = sign_username;
         let password = sign_password;
 

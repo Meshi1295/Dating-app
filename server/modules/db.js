@@ -63,7 +63,6 @@ const setImg = ({ filename, username }) => {
         .returning('*')
 }
 const insertInfo = (age, job, about_myself, username) => {
-    console.log('db', age, job, about_myself);
     if (age != '') {
         return db('users_info')
             .update({

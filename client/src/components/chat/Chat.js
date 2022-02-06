@@ -172,7 +172,6 @@ const Chat = (props) => {
                 <Messages messages={messages} name={username_from} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
-
         </div>
     );
 }

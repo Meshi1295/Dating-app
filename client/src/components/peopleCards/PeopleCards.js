@@ -11,7 +11,6 @@ const PeopleCards = (props) => {
         fetch('http://localhost:8080/users')
             .then((res) => res.json())
             .then((data) => {
-                console.log('PeopleCards data', data);
                 setPeople(data)
             })
             .catch((e) => console.log(e))

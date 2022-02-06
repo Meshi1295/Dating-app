@@ -40,7 +40,6 @@ const PrivateProfile = (props) => {
     }
 
     const setUserInfo = () => {
-        console.log('im in setUserInfo');
         fetch(`http://localhost:8080/private-info-page/${username}`, {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },

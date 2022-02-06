@@ -96,7 +96,6 @@ app.post('/private-info-page/:username', async (req, res) => {
         req.params.username
     )
         .then(data => {
-            console.log(data);
             res.json(data)
         })
         .catch(err => {
@@ -200,6 +199,7 @@ app.delete('/removeuser/:userId', (req, res) => {
         .then(user => res.json(user))
         .catch(e => console.log(e))
 })
+
 
 
 // ----  with socket!!!!

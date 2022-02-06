@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ButtonsArea.css'
 import ReplayIcon from '@mui/icons-material/Replay';
 import CloseIcon from '@mui/icons-material/Close';

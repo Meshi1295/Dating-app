@@ -22,9 +22,7 @@ const Messenger = (props) => {
                 setUsers(data)
                 console.log('arr of users', data);
             })
-            .catch(e => {
-                console.log(e);
-            })
+            .catch(e => { console.log(e) })
     }, [])
 
     return (

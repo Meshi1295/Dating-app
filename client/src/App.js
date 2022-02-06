@@ -47,7 +47,6 @@ class App extends React.Component {
   };
   successLogin = () => {
     const { login_username, login_password } = this.state;
-    console.log(login_username, login_password, this.state.submitLogin);
     if (login_username != "" && login_password != "") {
       this.setState({ submitLogin: false });
     } else {

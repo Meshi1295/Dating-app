@@ -22,9 +22,7 @@ const Message = (
     let minutes = date.getMinutes();
     let seconds = date.getSeconds();
 
-    // console.log(hours, minutes, seconds);
     let time = hours + ':' + minutes + ':' + seconds
-    console.log('time', time);
 
 
 
