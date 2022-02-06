@@ -13,7 +13,6 @@ const db = knex({
 
 // login & register
 const registerUser = (firstname, lastname, email, phone, username, pass) => {
-    console.log('db', firstname, lastname, email, username, pass, phone);
     return db("users_info")
         .insert([{
             firstname,
@@ -56,7 +55,6 @@ const retrieveHashPass = (userN) => {
 // add data from personal profile page 
 // ----
 const setImg = ({ filename, username }) => {
-    console.log('value', filename, username);
     return db('users_info')
         .update({
             profileimg: filename
@@ -95,17 +93,28 @@ const insertInfo = (age, job, about_myself, username) => {
 }
 // ------------
 
+
+// ----
+// get && delete user
+// ----
 const getUsers = (userN) => {
     return db('users_info')
         .where({ username: userN })
         .returning(['user_id'])
-
 }
 const getUsersCards = () => {
     return db('users_info')
         .select('*')
         .returning('*')
 }
+const deleteUser = (userId) => {
+    return db('users_info')
+        .where({ user_id: userId })
+        .del()
+        .returning('*')
+}
+
+
 // ----
 // chat
 // ----
@@ -151,6 +160,7 @@ module.exports = {
     setImg,
     getUsers,
     getUsersCards,
+    deleteUser,
     insertMessageToDB,
     insertInfo,
     getAllMessages,

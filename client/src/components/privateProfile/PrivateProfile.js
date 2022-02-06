@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './PrivateProfile.css'
 import axios from 'axios';
 import EditTwoToneIcon from '@mui/icons-material/EditTwoTone';
 import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const PrivateProfile = (props) => {
 
@@ -63,11 +65,32 @@ const PrivateProfile = (props) => {
             .catch((e) => console.log(e));
     }, [])
 
+    // update user info
     useEffect(() => {
         if (age || job || content) {
             setUserInfo()
         }
     }, [age, job, content])
+
+
+    // delete User from db
+    // navigate to register after delete user
+    const navigate = useNavigate()
+    const deleteUser = (userId) => {
+
+        fetch(`http://localhost:8080/removeuser/${userId}`, {
+            method: 'delete',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId })
+        })
+            .then((res) => {
+                return res.json()
+            })
+            .then(() => {
+                navigate('/')
+            })
+            .catch((e) => console.log(e))
+    }
 
 
     return (
@@ -91,6 +114,13 @@ const PrivateProfile = (props) => {
                         />
                         <button onClick={() => setProfileImg()}>submit</button>
                     </div>
+
+                    <IconButton
+                        className='delete-btn'
+                        onClick={() => deleteUser(user.user_id)}>
+                        Delete your profile
+                        <DeleteIcon className='delete' />
+                    </IconButton>
 
                     <label>
                         <span style={{ fontSize: '29px' }}>
@@ -130,10 +160,12 @@ const PrivateProfile = (props) => {
                                 onKeyDown={(e) => e.key === "Enter" ? setContent(e.target.value)
                                     || setShow(!show.showContent) : ''} /> : null
                         }
-                        <IconButton onClick={() => setShow({ showContent: !show.showContent })}>
+                        <IconButton
+                            onClick={() => setShow({ showContent: !show.showContent })}>
                             <EditTwoToneIcon />
                         </IconButton>
                     </p>
+
                 </div>
             })) : (null)}
         </>

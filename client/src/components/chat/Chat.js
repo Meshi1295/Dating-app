@@ -83,9 +83,9 @@ const Chat = (props) => {
         }
     }
 
+    // get messages
     useEffect(() => {
         const { username_from, username_to } = location;
-
         setUsername_to(username_to);
         setUsername_from(username_from)
 
@@ -115,10 +115,8 @@ const Chat = (props) => {
 
     useEffect(() => {
         const { username_from, username_to } = location;
-
         setUsername_to(username_to);
         setUsername_from(username_from)
-
 
         fetch('http://localhost:8080/allmessage', {
             method: 'post',
@@ -140,10 +138,8 @@ const Chat = (props) => {
 
     useEffect(() => {
         const { username_from, username_to } = location;
-
         setUsername_to(username_to);
         setUsername_from(username_from)
-
 
         fetch('http://localhost:8080/allmessage', {
             method: 'post',

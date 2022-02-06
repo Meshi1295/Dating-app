@@ -6,12 +6,11 @@ import onlineIcon from '../../icons/onlineIcon.png';
 import './Messenger.css';
 
 const Messenger = (props) => {
-    console.log('TextContainer');
     const [users, setUsers] = useState([])
-    const location = useParams();
+    const userName = useParams();
 
     useEffect(() => {
-        const { login_username } = location;
+        const { login_username } = userName;
 
         fetch('http://localhost:8080/usersmessages', {
             method: 'post',

@@ -56,3 +56,11 @@ label {
   margin-top: 2px;
   width: 40%;
 }
+
+.img-btn {
+  padding: 5px;
+}
+
+.delete {
+  padding: 10px;
+}

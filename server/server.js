@@ -37,7 +37,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/infoUsers/:username', (req, res) => {
     const username = (req.params.username);
-    console.log(username);
     return db.getUsers(username)
         .then(data => res.json(data))
         .catch(e => console.log(e))
@@ -88,11 +87,8 @@ app.post('/api/setImg', upload.single('image'), (req, res) => {
     }
 })
 
-//  put information to the personal profile page
+//  put information from personal profile page
 app.post('/private-info-page/:username', async (req, res) => {
-    console.log('private-info-page', req.body);
-    console.log('username', req.params.username)
-
     await db.insertInfo(
         req.body.age,
         req.body.job,
@@ -111,7 +107,6 @@ app.post('/private-info-page/:username', async (req, res) => {
 
 //register
 app.post("/register", async (req, res) => {
-    console.log('req.body', req.body);
     const hashPass = pword.hash(req.body.password, {
         cost: 10,
     });
@@ -138,7 +133,6 @@ app.post("/register", async (req, res) => {
 
 //login
 app.post("/login", async (req, res) => {
-
     let passObj = await db.retrieveHashPass(req.body.username);
     try {
         if (
@@ -167,9 +161,8 @@ app.post("/login", async (req, res) => {
     }
 });
 
-
+// messenger
 app.post('/sendmessage', (req, res) => {
-    console.log('message', req.body);
     db.insertMessageToDB(
         req.body.message,
         req.body.username_from,
@@ -185,7 +178,6 @@ app.post('/sendmessage', (req, res) => {
 })
 
 app.post('/allmessage', (req, res) => {
-    console.log('allmessage', req.body);
     return db.getAllMessages(
         req.body.username_from,
         req.body.username_to
@@ -195,11 +187,17 @@ app.post('/allmessage', (req, res) => {
 })
 
 app.post('/usersmessages', (req, res) => {
-    console.log('usersmessages', req.body);
     return db.getUsersMessages(
         req.body.login_username
     )
         .then(data => res.json(data))
+        .catch(e => console.log(e))
+})
+
+// delete user
+app.delete('/removeuser/:userId', (req, res) => {
+    db.deleteUser(req.params.userId)
+        .then(user => res.json(user))
         .catch(e => console.log(e))
 })
 
