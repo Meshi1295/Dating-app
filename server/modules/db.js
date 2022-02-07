@@ -11,6 +11,18 @@ const db = knex({
     }
 })
 
+// const db = knex({
+//     client: 'pg',
+//     connection: {
+//         host: process.env.DB_HOST,
+//         port: process.env.DB_PORT,
+//         user: process.env.DB_USER,
+//         password: process.env.DB_PASSWORD,
+//         database: process.env.DB_DATA_NAME,
+//         ssl: { rejectUnauthorized: false }
+//     }
+// })
+
 // login & register
 const registerUser = (firstname, lastname, email, phone, username, pass) => {
     return db("users_info")

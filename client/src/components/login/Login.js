@@ -1,4 +1,5 @@
 // login
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import '../../components/registration/Register.css'
 import './Login.css'
@@ -11,6 +12,11 @@ const Login = ({
     login,
 }) => {
     const navigation = useNavigate();
+    useEffect(() => {
+        if (login_info.auth === "ok") {
+            navigation(`/PeopleCards?login_info=${login_info.auth}`)
+        }
+    }, [login_info])
 
     return (
         <div className="form-container">
@@ -56,10 +62,7 @@ const Login = ({
                         value="Login"
                         disabled={submitLogin}
                     />
-                    <br />
-                    <div>
-                        {login_info.auth === "ok" ? navigation(`/PeopleCards?login_info=${login_info.auth}`) : ""}
-                    </div>
+
                 </form>
             </div>
         </div>
